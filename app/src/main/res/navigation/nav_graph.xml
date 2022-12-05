@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+<!--
+  ~ Defines the navigation actions for each Fragment.
+  ~ The starting Fragment is WelcomeFragment.
+  -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_sizeFragment"
+            app:destination="@id/sizeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sizeFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.SizeFragment"
+        android:label="fragment_size"
+        tools:layout="@layout/fragment_size">
+        <action
+            android:id="@+id/action_sizeFragment_to_toppingsFragment"
+            app:destination="@id/toppingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toppingsFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.ToppingsFragment"
+        android:label="fragment_toppings"
+        tools:layout="@layout/fragment_toppings">
+        <action
+            android:id="@+id/action_toppingsFragment_to_sauceFragment"
+            app:destination="@id/sauceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sauceFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.SauceFragment"
+        android:label="fragment_sauce"
+        tools:layout="@layout/fragment_sauce">
+        <action
+            android:id="@+id/action_sauceFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" />
+    <!--Global action for navigating to the WelcomeFragment when the order is cancelled/submitted-->
+    <action
+        android:id="@+id/action_global_welcomeFragment"
+        app:destination="@id/welcomeFragment"
+        app:popUpTo="@id/welcomeFragment"
+        app:popUpToInclusive="true" />
+</navigation>

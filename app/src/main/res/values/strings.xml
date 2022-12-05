@@ -1,0 +1,44 @@
+<!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+
+<resources>
+    <string name="app_name">Ex11_FragmentsAndNavigation</string>
+    <!--Strings related to generic Buttons-->
+    <string name="cancel">Cancel</string>
+    <string name="next">Next</string>
+    <!--Strings related to the SizeFragment-->
+    <string name="size_title">Select the size of your Froyo:</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="size_extra_large">XXL</string>
+    <string name="empty_size">You must select the size of your Froyo before proceeding</string>
+    <!--Strings related to the ToppingsFragment-->
+    <string name="toppings_title">Select the toppings for your Froyo:</string>
+    <string name="strawberries">Strawberries</string>
+    <string name="kiwi">Wiki</string>
+    <string name="almonds">Almond crocanti</string>
+    <string name="oreo">Oreo</string>
+    <string name="empty_toppings">You must select the toppings for your Froyo before proceeding</string>
+    <!--Strings related to the SauceFragment-->
+    <string name="sauce_title">Select the sauce for your Froyo:</string>
+    <string name="chocolate">Dark chocolate</string>
+    <string name="fruits">Fruits of the forest</string>
+    <string name="honey">Honey</string>
+    <string name="mango">Mango</string>
+    <string name="empty_sauce">You must select the sauce of your Froyo before proceeding</string>
+    <!--Strings related to the WelcomeFragment-->
+    <string name="welcome">Welcome to Froyo\'s</string>
+    <string name="froyo_description">Froyo</string>
+    <string name="select">Customize your own Froyo</string>
+    <!--Strings related to the CheckoutFragment-->
+    <string name="checkout_title">Please, review your order:</string>
+    <string name="checkout_size">%1$s Froyo with</string>
+    <string name="checkout_toppings">%1$s and</string>
+    <string name="checkout_sauce">%1$s sauce</string>
+    <string name="submit">Submit</string>
+</resources>
