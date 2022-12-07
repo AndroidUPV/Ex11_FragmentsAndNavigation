@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import upv.dadm.ex11_fragmentsandnavigation.R
 import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentWelcomeBinding
 
@@ -23,6 +24,7 @@ class WelcomeFragment : Fragment() {
 
     // Reference to resource binding
     private var binding: FragmentWelcomeBinding? = null
+    private val args: WelcomeFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,8 @@ class WelcomeFragment : Fragment() {
         fragmentBinding.bWelcomeNext.setOnClickListener {
             navigateToSizeSelection()
         }
-
+        // Customize the welcome message using the received argument
+        fragmentBinding.tvWelcome.text = getString(R.string.welcome, args.userName)
         // Hold a reference to resource binding for later use
         binding = fragmentBinding
         // Return the root element of the generated view
@@ -51,6 +54,6 @@ class WelcomeFragment : Fragment() {
      * Notifies the activity it must navigate to the screen for size selection.
      */
     private fun navigateToSizeSelection() {
-        findNavController().navigate(R.id.action_welcomeFragment_to_sizeFragment)
+        findNavController().navigate(R.id.actionSelectSize)
     }
 }

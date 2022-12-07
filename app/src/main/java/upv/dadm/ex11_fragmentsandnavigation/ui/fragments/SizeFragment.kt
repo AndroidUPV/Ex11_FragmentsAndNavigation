@@ -97,7 +97,7 @@ class SizeFragment : Fragment() {
      * Notifies the activity it must navigate to the screen for toppings selection.
      */
     private fun selectToppings() {
-        findNavController().navigate(R.id.action_sizeFragment_to_toppingsFragment)
+        findNavController().navigate(R.id.actionSelectToppings)
     }
 
     /**
@@ -106,6 +106,6 @@ class SizeFragment : Fragment() {
      */
     private fun cancel() {
         viewModel.resetOrder()
-        findNavController().navigate(R.id.action_global_welcomeFragment)
+        findNavController().navigate(R.id.actionBackToWelcome)
     }
 }

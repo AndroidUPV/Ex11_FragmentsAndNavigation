@@ -97,7 +97,7 @@ class ToppingsFragment : Fragment() {
      * Notifies the activity it must navigate to the screen for sauce selection.
      */
     private fun selectSauce() {
-        findNavController().navigate(R.id.action_toppingsFragment_to_sauceFragment)
+        findNavController().navigate(R.id.actionSelectSauce)
     }
 
     /**
@@ -106,7 +106,7 @@ class ToppingsFragment : Fragment() {
      */
     private fun cancel() {
         viewModel.resetOrder()
-        findNavController().navigate(R.id.action_global_welcomeFragment)
+        findNavController().navigate(R.id.actionBackToWelcome)
     }
 
 }

@@ -19,8 +19,12 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome">
         <action
-            android:id="@+id/action_welcomeFragment_to_sizeFragment"
+            android:id="@+id/actionSelectSize"
             app:destination="@id/sizeFragment" />
+        <!--The user name is passed as argument to customize the welcome message-->
+        <argument
+            android:name="userName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/sizeFragment"
@@ -28,7 +32,7 @@
         android:label="fragment_size"
         tools:layout="@layout/fragment_size">
         <action
-            android:id="@+id/action_sizeFragment_to_toppingsFragment"
+            android:id="@+id/actionSelectToppings"
             app:destination="@id/toppingsFragment" />
     </fragment>
     <fragment
@@ -37,7 +41,7 @@
         android:label="fragment_toppings"
         tools:layout="@layout/fragment_toppings">
         <action
-            android:id="@+id/action_toppingsFragment_to_sauceFragment"
+            android:id="@+id/actionSelectSauce"
             app:destination="@id/sauceFragment" />
     </fragment>
     <fragment
@@ -46,7 +50,7 @@
         android:label="fragment_sauce"
         tools:layout="@layout/fragment_sauce">
         <action
-            android:id="@+id/action_sauceFragment_to_checkoutFragment"
+            android:id="@+id/actionProceedToCheckout"
             app:destination="@id/checkoutFragment" />
     </fragment>
     <fragment
@@ -56,8 +60,7 @@
         tools:layout="@layout/fragment_checkout" />
     <!--Global action for navigating to the WelcomeFragment when the order is cancelled/submitted-->
     <action
-        android:id="@+id/action_global_welcomeFragment"
-        app:destination="@id/welcomeFragment"
+        android:id="@+id/actionBackToWelcome"
         app:popUpTo="@id/welcomeFragment"
-        app:popUpToInclusive="true" />
+        app:popUpToInclusive="false" />
 </navigation>

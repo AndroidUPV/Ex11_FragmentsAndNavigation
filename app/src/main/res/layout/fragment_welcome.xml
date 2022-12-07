@@ -26,14 +26,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
+        android:gravity="center"
         android:textColor="@color/purple_700"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/ivFroyo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Hi David\nWelcome to Froyo's" />
 
     <Button
         android:id="@+id/bWelcomeNext"

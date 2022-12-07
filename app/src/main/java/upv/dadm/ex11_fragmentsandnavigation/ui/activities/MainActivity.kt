@@ -9,6 +9,9 @@ package upv.dadm.ex11_fragmentsandnavigation.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.NavHostFragment
+import upv.dadm.ex11_fragmentsandnavigation.R
 import upv.dadm.ex11_fragmentsandnavigation.databinding.ActivityMainBinding
 
 /**
@@ -21,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         // Set the activity content to the root element of the generated view
         setContentView(binding.root)
-    }
 
+        // Sets the navigation graph for the Navigation Controller
+        // This is only required to pass arguments to the start Destination,
+        // otherwise this is all defined in the corresponding XML layout
+        (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+            .navController.setGraph(
+                R.navigation.nav_graph,
+                bundleOf("userName" to "David")
+            )
+    }
 }

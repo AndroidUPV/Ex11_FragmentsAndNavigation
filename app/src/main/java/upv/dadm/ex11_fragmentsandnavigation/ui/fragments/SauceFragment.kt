@@ -96,7 +96,7 @@ class SauceFragment : Fragment() {
      * Notifies the activity it must navigate to the screen for checkout.
      */
     private fun proceedToCheckout() {
-        findNavController().navigate(R.id.action_sauceFragment_to_checkoutFragment)
+        findNavController().navigate(R.id.actionProceedToCheckout)
     }
 
     /**
@@ -105,6 +105,6 @@ class SauceFragment : Fragment() {
      */
     private fun cancel() {
         viewModel.resetOrder()
-        findNavController().navigate(R.id.action_global_welcomeFragment)
+        findNavController().navigate(R.id.actionBackToWelcome)
     }
 }

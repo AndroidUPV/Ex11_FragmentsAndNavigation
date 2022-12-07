@@ -73,7 +73,7 @@ class CheckoutFragment : Fragment() {
      */
     private fun submitOrder() {
         viewModel.resetOrder()
-        findNavController().navigate(R.id.action_global_welcomeFragment)
+        findNavController().navigate(R.id.actionBackToWelcome)
     }
 
     /**
@@ -82,7 +82,7 @@ class CheckoutFragment : Fragment() {
      */
     private fun cancel() {
         viewModel.resetOrder()
-        findNavController().navigate(R.id.action_global_welcomeFragment)
+        findNavController().navigate(R.id.actionBackToWelcome)
     }
 
 }
