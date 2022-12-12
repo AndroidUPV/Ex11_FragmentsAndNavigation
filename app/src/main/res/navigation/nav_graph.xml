@@ -57,10 +57,18 @@
         android:id="@+id/checkoutFragment"
         android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.CheckoutFragment"
         android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" />
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/actionDisplayConfirmationDialog"
+            app:destination="@id/confirmationDialogFragment" />
+    </fragment>
     <!--Global action for navigating to the WelcomeFragment when the order is cancelled/submitted-->
     <action
         android:id="@+id/actionBackToWelcome"
         app:popUpTo="@id/welcomeFragment"
         app:popUpToInclusive="false" />
+    <dialog
+        android:id="@+id/confirmationDialogFragment"
+        android:name="upv.dadm.ex11_fragmentsandnavigation.ui.fragments.ConfirmationDialogFragment"
+        android:label="ConfirmationDialogFragment" />
 </navigation>

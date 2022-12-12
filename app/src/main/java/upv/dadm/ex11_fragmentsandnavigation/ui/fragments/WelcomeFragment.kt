@@ -51,7 +51,7 @@ class WelcomeFragment : Fragment() {
     }
 
     /**
-     * Notifies the activity it must navigate to the screen for size selection.
+     * Navigates to the screen for size selection.
      */
     private fun navigateToSizeSelection() {
         findNavController().navigate(R.id.actionSelectSize)

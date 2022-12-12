@@ -93,15 +93,14 @@ class SauceFragment : Fragment() {
     }
 
     /**
-     * Notifies the activity it must navigate to the screen for checkout.
+     * Navigates to the screen for checkout.
      */
     private fun proceedToCheckout() {
         findNavController().navigate(R.id.actionProceedToCheckout)
     }
 
     /**
-     * Clears the state in the ViewModel and
-     * notifies the activity it must navigate to the welcome screen.
+     * Clears the state in the ViewModel and navigates to the welcome screen.
      */
     private fun cancel() {
         viewModel.resetOrder()

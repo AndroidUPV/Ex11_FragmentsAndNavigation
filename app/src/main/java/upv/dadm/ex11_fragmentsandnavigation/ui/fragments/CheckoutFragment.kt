@@ -36,8 +36,8 @@ class CheckoutFragment : Fragment() {
         // Get the automatically generated view binding for the layout resource
         val fragmentBinding = FragmentCheckoutBinding.inflate(layoutInflater)
 
-        // Cancel the order and navigate to the Welcome screen
-        fragmentBinding.bCancel.setOnClickListener { cancel() }
+        // Display a dialog to ask the user for confirmation before cancelling the order
+        fragmentBinding.bCancel.setOnClickListener { displayConfirmationDialog() }
         // Submit the order and navigate to the Welcome screen
         fragmentBinding.bSubmit.setOnClickListener { submitOrder() }
 
@@ -67,8 +67,7 @@ class CheckoutFragment : Fragment() {
     }
 
     /**
-     * Clears the state in the ViewModel and
-     * notifies the activity it must navigate to the welcome screen.
+     * Clears the state in the ViewModel and navigates to the welcome screen.
      * It has the same effect as cancel(), but this is supposed to actually submit the order.
      */
     private fun submitOrder() {
@@ -77,12 +76,10 @@ class CheckoutFragment : Fragment() {
     }
 
     /**
-     * Clears the state in the ViewModel and
-     * notifies the activity it must navigate to the welcome screen.
+     * Displays a dialog asking the user for confirmation before cancelling the order.
      */
-    private fun cancel() {
-        viewModel.resetOrder()
-        findNavController().navigate(R.id.actionBackToWelcome)
+    private fun displayConfirmationDialog() {
+        findNavController().navigate(R.id.actionDisplayConfirmationDialog)
     }
 
 }

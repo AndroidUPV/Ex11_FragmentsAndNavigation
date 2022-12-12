@@ -94,15 +94,14 @@ class ToppingsFragment : Fragment() {
     }
 
     /**
-     * Notifies the activity it must navigate to the screen for sauce selection.
+     * Navigates to the screen for sauce selection.
      */
     private fun selectSauce() {
         findNavController().navigate(R.id.actionSelectSauce)
     }
 
     /**
-     * Clears the state in the ViewModel and
-     * notifies the activity it must navigate to the welcome screen.
+     * Clears the state in the ViewModel and navigates to the welcome screen.
      */
     private fun cancel() {
         viewModel.resetOrder()
