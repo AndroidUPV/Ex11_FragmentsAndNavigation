@@ -11,17 +11,13 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import upv.dadm.ex11_fragmentsandnavigation.R
-import upv.dadm.ex11_fragmentsandnavigation.ui.viewmodels.FroyoViewModel
 
 /**
  * Displays a dialog to ask the user for confirmation before cancelling the current order.
  */
 class ConfirmationDialogFragment : DialogFragment() {
-
-    private val viewModel: FroyoViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Create the desired dialog
@@ -30,12 +26,14 @@ class ConfirmationDialogFragment : DialogFragment() {
             .setMessage(R.string.dialog_message)
             .setPositiveButton(R.string.dialog_yes) { _, _ ->
                 // Yes, the user wants to cancel the order
-                viewModel.resetOrder()
-                findNavController().navigate(R.id.actionBackToWelcome)
+                findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                    CANCEL_ORDER_KEY,
+                    true
+                )
+                dismiss()
             }
             .setNegativeButton(R.string.dialog_no) { _, _ ->
-                // No, the user wants to keep the order
-                findNavController().popBackStack()
+                dismiss()
             }
             .create()
     }

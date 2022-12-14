@@ -8,9 +8,7 @@
 package upv.dadm.ex11_fragmentsandnavigation.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,34 +18,32 @@ import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentWelcomeBinding
 /**
  * Displays a welcome screen that gives access to customize an order.
  */
-class WelcomeFragment : Fragment() {
+class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
-    // Reference to resource binding
-    private var binding: FragmentWelcomeBinding? = null
+    // Backing property to resource binding
+    private var _binding: FragmentWelcomeBinding? = null
+
+    // Property valid between onCreateView() and onDestroyView()
+    private val binding get() = _binding!!
+
     private val args: WelcomeFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // Get the automatically generated view binding for the layout resource
-        val fragmentBinding = FragmentWelcomeBinding.inflate(layoutInflater)
+        _binding = FragmentWelcomeBinding.bind(view)
         // Navigate to SizeFragment for the user to select the size of the Froyo
-        fragmentBinding.bWelcomeNext.setOnClickListener {
+        binding.bWelcomeNext.setOnClickListener {
             navigateToSizeSelection()
         }
         // Customize the welcome message using the received argument
-        fragmentBinding.tvWelcome.text = getString(R.string.welcome, args.userName)
-        // Hold a reference to resource binding for later use
-        binding = fragmentBinding
-        // Return the root element of the generated view
-        return fragmentBinding.root
+        binding.tvWelcome.text = getString(R.string.welcome, args.userName)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         // Clear resources to make them eligible for garbage collection
-        binding = null
+        _binding = null
     }
 
     /**
