@@ -32,7 +32,8 @@ class CheckoutFragment : Fragment(R.layout.fragment_checkout) {
     private var _binding: FragmentCheckoutBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -113,8 +114,7 @@ class CheckoutFragment : Fragment(R.layout.fragment_checkout) {
     /**
      * Displays a dialog asking the user for confirmation before cancelling the order.
      */
-    private fun displayConfirmationDialog() {
+    private fun displayConfirmationDialog() =
         findNavController().navigate(R.id.actionDisplayConfirmationDialog)
-    }
 
 }

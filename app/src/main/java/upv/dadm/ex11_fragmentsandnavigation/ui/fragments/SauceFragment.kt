@@ -29,7 +29,8 @@ class SauceFragment : Fragment(R.layout.fragment_sauce) {
     private var _binding: FragmentSauceBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,16 +82,12 @@ class SauceFragment : Fragment(R.layout.fragment_sauce) {
     /**
      * Updates the sauce of the selected Froyo in the ViewModel.
      */
-    private fun setSauce(sauce: String) {
-        viewModel.setSauce(sauce)
-    }
+    private fun setSauce(sauce: String) = viewModel.setSauce(sauce)
 
     /**
      * Navigates to the screen for checkout.
      */
-    private fun proceedToCheckout() {
-        findNavController().navigate(R.id.actionProceedToCheckout)
-    }
+    private fun proceedToCheckout() = findNavController().navigate(R.id.actionProceedToCheckout)
 
     /**
      * Clears the state in the ViewModel and navigates to the welcome screen.

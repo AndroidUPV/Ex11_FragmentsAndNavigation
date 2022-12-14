@@ -24,7 +24,8 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     private var _binding: FragmentWelcomeBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     private val args: WelcomeFragmentArgs by navArgs()
 
@@ -49,7 +50,5 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     /**
      * Navigates to the screen for size selection.
      */
-    private fun navigateToSizeSelection() {
-        findNavController().navigate(R.id.actionSelectSize)
-    }
+    private fun navigateToSizeSelection() = findNavController().navigate(R.id.actionSelectSize)
 }

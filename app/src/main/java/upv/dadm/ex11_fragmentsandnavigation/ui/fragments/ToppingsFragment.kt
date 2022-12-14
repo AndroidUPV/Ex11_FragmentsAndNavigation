@@ -29,7 +29,8 @@ class ToppingsFragment : Fragment(R.layout.fragment_toppings) {
     private var _binding: FragmentToppingsBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,16 +82,12 @@ class ToppingsFragment : Fragment(R.layout.fragment_toppings) {
     /**
      * Updates the topping of the selected Froyo in the ViewModel.
      */
-    private fun setTopping(topping: String) {
-        viewModel.setTopping(topping)
-    }
+    private fun setTopping(topping: String) = viewModel.setTopping(topping)
 
     /**
      * Navigates to the screen for sauce selection.
      */
-    private fun selectSauce() {
-        findNavController().navigate(R.id.actionSelectSauce)
-    }
+    private fun selectSauce() = findNavController().navigate(R.id.actionSelectSauce)
 
     /**
      * Clears the state in the ViewModel and navigates to the welcome screen.

@@ -29,7 +29,8 @@ class SizeFragment : Fragment(R.layout.fragment_size) {
     private var _binding: FragmentSizeBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,16 +82,12 @@ class SizeFragment : Fragment(R.layout.fragment_size) {
     /**
      * Updates the size of the selected Froyo in the ViewModel.
      */
-    private fun setSize(size: String) {
-        viewModel.setSize(size)
-    }
+    private fun setSize(size: String) = viewModel.setSize(size)
 
     /**
      * Navigates to the screen for toppings selection.
      */
-    private fun selectToppings() {
-        findNavController().navigate(R.id.actionSelectToppings)
-    }
+    private fun selectToppings() = findNavController().navigate(R.id.actionSelectToppings)
 
     /**
      * Clears the state in the ViewModel and navigates to the welcome screen.
