@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         // Sets the navigation graph for the Navigation Controller
         // This is only required to pass arguments to the start Destination,
         // otherwise this is all defined in the corresponding XML layout
-        (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+        binding.navHostFragment.getFragment<NavHostFragment>()
             .navController.setGraph(
                 R.navigation.nav_graph,
                 bundleOf("userName" to "David")
