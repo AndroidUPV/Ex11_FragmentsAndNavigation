@@ -20,14 +20,15 @@ import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentWelcomeBinding
  */
 class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
+    // Instance of Fragment's arguments
+    private val args: WelcomeFragmentArgs by navArgs()
+
     // Backing property to resource binding
     private var _binding: FragmentWelcomeBinding? = null
 
     // Property valid between onCreateView() and onDestroyView()
     private val binding
         get() = _binding!!
-
-    private val args: WelcomeFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
