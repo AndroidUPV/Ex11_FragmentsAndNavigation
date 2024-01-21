@@ -1,8 +1,12 @@
 /*
- * Copyright (c) 2022
- * David de Andrés and Juan Carlos Ruiz
- * Development of apps for mobile devices
- * Universitat Politècnica de València
+ * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Authors: David de Andrés and Juan Carlos Ruiz
+ *          Fault-Tolerant Systems
+ *          Instituto ITACA
+ *          Universitat Politècnica de València
+ *
+ * Distributed under MIT license
+ * (See accompanying file LICENSE.txt)
  */
 
 package upv.dadm.ex11_fragmentsandnavigation.ui.fragments
@@ -11,7 +15,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import upv.dadm.ex11_fragmentsandnavigation.R
 import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentSizeBinding
 import upv.dadm.ex11_fragmentsandnavigation.ui.viewmodels.FroyoViewModel
@@ -58,18 +66,20 @@ class SizeFragment : Fragment(R.layout.fragment_size) {
         // Navigate to ToppingsFragment for the user to select the toppings of the Froyo
         binding.bSizeNext.setOnClickListener { selectToppings() }
 
-        // Set the selected size according to the state in the ViewModel
-        viewModel.size.observe(viewLifecycleOwner) { size ->
-            when (size) {
-                getString(R.string.size_small) -> binding.rbSmall.isChecked = true
-                getString(R.string.size_medium) -> binding.rbMedium.isChecked = true
-                getString(R.string.size_large) -> binding.rbLarge.isChecked = true
-                getString(R.string.size_extra_large) -> binding.rbExtraLarge.isChecked = true
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Set the selected size according to the state in the ViewModel
+                viewModel.froyoUiState.collect { froyo ->
+                    when (froyo.size) {
+                        getString(R.string.size_small) -> binding.rbSmall.isChecked = true
+                        getString(R.string.size_medium) -> binding.rbMedium.isChecked = true
+                        getString(R.string.size_large) -> binding.rbLarge.isChecked = true
+                        getString(R.string.size_extra_large) -> binding.rbExtraLarge.isChecked = true
+                    }
+                    // Enable the Button to proceed to the next screen when a size has been selected
+                    binding.bSizeNext.isEnabled = froyo.size.isNotEmpty()
+                }
             }
-        }
-        // Enable the Button to proceed to the next screen when a size has been selected
-        viewModel.sizeSelected.observe(viewLifecycleOwner) { enabled ->
-            binding.bSizeNext.isEnabled = enabled
         }
     }
 

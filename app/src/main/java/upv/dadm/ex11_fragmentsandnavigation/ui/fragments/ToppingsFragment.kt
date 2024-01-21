@@ -1,8 +1,12 @@
 /*
- * Copyright (c) 2022
- * David de Andrés and Juan Carlos Ruiz
- * Development of apps for mobile devices
- * Universitat Politècnica de València
+ * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Authors: David de Andrés and Juan Carlos Ruiz
+ *          Fault-Tolerant Systems
+ *          Instituto ITACA
+ *          Universitat Politècnica de València
+ *
+ * Distributed under MIT license
+ * (See accompanying file LICENSE.txt)
  */
 
 package upv.dadm.ex11_fragmentsandnavigation.ui.fragments
@@ -11,7 +15,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import upv.dadm.ex11_fragmentsandnavigation.R
 import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentToppingsBinding
 import upv.dadm.ex11_fragmentsandnavigation.ui.viewmodels.FroyoViewModel
@@ -58,18 +66,20 @@ class ToppingsFragment : Fragment(R.layout.fragment_toppings) {
         // Navigate to SauceFragment for the user to select the sauce of the Froyo
         binding.bToppingsNext.setOnClickListener { selectSauce() }
 
-        // Set the selected topping according to the state in the ViewModel
-        viewModel.topping.observe(viewLifecycleOwner) { topping ->
-            when (topping) {
-                getString(R.string.strawberries) -> binding.rbStrawberries.isChecked = true
-                getString(R.string.kiwi) -> binding.rbKiwi.isChecked = true
-                getString(R.string.almonds) -> binding.rbAlmonds.isChecked = true
-                getString(R.string.oreo) -> binding.rbOreo.isChecked = true
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Set the selected topping according to the state in the ViewModel
+                viewModel.froyoUiState.collect { froyo ->
+                    when (froyo.topping) {
+                        getString(R.string.strawberries) -> binding.rbStrawberries.isChecked = true
+                        getString(R.string.kiwi) -> binding.rbKiwi.isChecked = true
+                        getString(R.string.almonds) -> binding.rbAlmonds.isChecked = true
+                        getString(R.string.oreo) -> binding.rbOreo.isChecked = true
+                    }
+                    // Enable the Button to proceed to the next screen when a topping has been selected
+                    binding.bToppingsNext.isEnabled = froyo.topping.isNotEmpty()
+                }
             }
-        }
-        // Enable the Button to proceed to the next screen when a topping has been selected
-        viewModel.toppingSelected.observe(viewLifecycleOwner) { enabled ->
-            binding.bToppingsNext.isEnabled = enabled
         }
     }
 

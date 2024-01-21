@@ -1,8 +1,12 @@
 /*
- * Copyright (c) 2022
- * David de Andrés and Juan Carlos Ruiz
- * Development of apps for mobile devices
- * Universitat Politècnica de València
+ * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Authors: David de Andrés and Juan Carlos Ruiz
+ *          Fault-Tolerant Systems
+ *          Instituto ITACA
+ *          Universitat Politècnica de València
+ *
+ * Distributed under MIT license
+ * (See accompanying file LICENSE.txt)
  */
 
 package upv.dadm.ex11_fragmentsandnavigation.ui.fragments
@@ -13,7 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import upv.dadm.ex11_fragmentsandnavigation.R
 import upv.dadm.ex11_fragmentsandnavigation.databinding.FragmentCheckoutBinding
 import upv.dadm.ex11_fragmentsandnavigation.ui.viewmodels.FroyoViewModel
@@ -73,19 +80,17 @@ class CheckoutFragment : Fragment(R.layout.fragment_checkout) {
             }
         })
 
-        // Display the selected size according to the state in the ViewModel
-        viewModel.size.observe(viewLifecycleOwner) { size ->
-            binding.tvCheckoutSize.text = getString(R.string.checkout_size, size)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Display the selected size, topping, and sauce according to the state in the ViewModel
+                viewModel.froyoUiState.collect { froyo ->
+                    binding.tvCheckoutSize.text = getString(R.string.checkout_size, froyo.size)
+                    binding.tvCheckoutTopping.text =
+                        getString(R.string.checkout_toppings, froyo.topping)
+                    binding.tvCheckoutSauce.text = getString(R.string.checkout_sauce, froyo.sauce)
+                }
+            }
         }
-        // Display the selected topping according to the state in the ViewModel
-        viewModel.topping.observe(viewLifecycleOwner) { topping ->
-            binding.tvCheckoutTopping.text = getString(R.string.checkout_toppings, topping)
-        }
-        // Display the selected sauce according to the state in the ViewModel
-        viewModel.sauce.observe(viewLifecycleOwner) { sauce ->
-            binding.tvCheckoutSauce.text = getString(R.string.checkout_sauce, sauce)
-        }
-
     }
 
     override fun onDestroyView() {
