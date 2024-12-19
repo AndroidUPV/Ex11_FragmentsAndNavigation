@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Copyright (c) 2022-2024 Universitat Politècnica de València
  * Authors: David de Andrés and Juan Carlos Ruiz
  *          Fault-Tolerant Systems
  *          Instituto ITACA
@@ -13,6 +13,7 @@ package upv.dadm.ex11_fragmentsandnavigation.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -105,6 +106,7 @@ class CheckoutFragment : Fragment(R.layout.fragment_checkout) {
      */
     private fun submitOrder() {
         viewModel.resetOrder()
+        Toast.makeText(requireContext(), R.string.checked_out, Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.actionBackToWelcome)
     }
 

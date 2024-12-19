@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Universitat Politècnica de València
+ * Copyright (c) 2022-2024 Universitat Politècnica de València
  * Authors: David de Andrés and Juan Carlos Ruiz
  *          Fault-Tolerant Systems
  *          Instituto ITACA
@@ -40,7 +40,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         _binding = FragmentWelcomeBinding.bind(view)
         // Navigate to SizeFragment for the user to select the size of the Froyo
         binding.bWelcomeNext.setOnClickListener {
-            navigateToSizeSelection()
+            selectSize()
         }
         // Customize the welcome message using the received argument
         binding.tvWelcome.text = getString(R.string.welcome, args.userName)
@@ -55,5 +55,5 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     /**
      * Navigates to the screen for size selection.
      */
-    private fun navigateToSizeSelection() = findNavController().navigate(R.id.actionSelectSize)
+    private fun selectSize() = findNavController().navigate(R.id.actionSelectSize)
 }
